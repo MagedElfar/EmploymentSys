@@ -1,0 +1,640 @@
+{
+	"info": {
+		"_postman_id": "da8de671-1f37-4164-831c-599546922b52",
+		"name": "Employment sys",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18389212",
+		"_collection_link": "https://universal-star-239469.postman.co/workspace/My-workspace~f344ae8b-af4a-4c8d-9657-775f830abb2d/collection/18389212-da8de671-1f37-4164-831c-599546922b52?action=share&source=collection_link&creator=18389212"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json(); \r",
+									"if(response.token) {\r",
+									"    pm.globals.set(\"token\",response.token);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"maged.1992.me@gmail.com\",\r\n    // \"email\":\"wordpress860@gmail.com\",\r\n    // \"email\":\"ali@gmail.com\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/authentication/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"authentication",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json(); \r",
+									"if(response.token) {\r",
+									"    pm.globals.set(\"token\",response.token);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"FirstName\":\"Ali\",\r\n    \"LastName\":\"Saad\",\r\n    \"username\":\"Ali21\",\r\n    \"email\":\"ali@gmail.com\",\r\n    \"password\":\"12345678\",\r\n    \"UserType\":\"Applicant\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/authentication/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"authentication",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get Current User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/current",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/users?limit=10&page=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"users"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "maged.1992.me@gmail.com",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/users/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/users/7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Current User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"maged.1992.me@gmail.com\",\r\n    \"username\":\"maged92\",\r\n    \"FirstName\":\"Maged\",\r\n    \"LastName\":\"Elfar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add to Role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserId\":1,\r\n    \"RoleId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/users/addRole",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								"addRole"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove from Role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserId\":1,\r\n    \"RoleId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/users/removeRole",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								"removeRole"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vacancies",
+			"item": [
+				{
+					"name": "Add Vacacy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"fullstack devloper\",\r\n    \"description\": \"vacacy description\",\r\n    \"maxApplications\": 23,\r\n    \"expiryDate\": \"30/11/2024\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/vacancies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"vacancies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Vacacy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"FrontEnd devloper\",\r\n    \"description\": \"vacacy description\",\r\n    \"maxApplications\": 23,\r\n    \"expiryDate\": \"30/11/2024\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/vacancies/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"vacancies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Vacacy status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/vacancies/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"vacancies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Vacacy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/vacancies/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"vacancies",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Vacacy by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test vacacy\",\r\n    \"description\": \"vacacy description\",\r\n    \"maxApplications\": 23,\r\n    \"expiryDate\": \"30/11/2024\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/vacancies/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"vacancies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Vacacies",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test vacacy\",\r\n    \"description\": \"vacacy description\",\r\n    \"maxApplications\": 23,\r\n    \"expiryDate\": \"30/11/2024\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/vacancies",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"vacancies"
+							],
+							"query": [
+								{
+									"key": "FromDate",
+									"value": "11/11/2024",
+									"disabled": true
+								},
+								{
+									"key": "ToDate",
+									"value": "01/12/2024",
+									"disabled": true
+								},
+								{
+									"key": "Status",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "Name",
+									"value": "devloper",
+									"disabled": true
+								},
+								{
+									"key": "employerId",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "Sort",
+									"value": "CreatedDate",
+									"disabled": true
+								},
+								{
+									"key": "asc",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Applications",
+			"item": [
+				{
+					"name": "Add Application",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"VacancyId\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/appilications",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"appilications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get application",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test vacacy\",\r\n    \"description\": \"vacacy description\",\r\n    \"maxApplications\": 23,\r\n    \"expiryDate\": \"30/11/2024\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/appilications/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"appilications",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get vacancy applications",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test vacacy\",\r\n    \"description\": \"vacacy description\",\r\n    \"maxApplications\": 23,\r\n    \"expiryDate\": \"30/11/2024\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/appilications/vacancy?VacancyId=4&page=1&limit=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"appilications",
+								"vacancy"
+							],
+							"query": [
+								{
+									"key": "VacancyId",
+									"value": "4"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://localhost:7294/api",
+			"type": "string"
+		}
+	]
+}
