@@ -22,6 +22,9 @@ namespace Core.DTOS.Vacancy
         public bool? Status { get; set; }
 
         public string? Name { get; set; }
+
+
+        
         public VacancySpecificationBuilder BuildSpecification()
         {
             var builder = new VacancySpecificationBuilder();

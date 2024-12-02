@@ -14,6 +14,7 @@ namespace API
             builder.Services.AddDatabaseConections();
             builder.Services.AddApplicationOptions();
             builder.Services.AddServices();
+            builder.Services.AddRedis();
             builder.Services.AddSwaggerServices();
             builder.Services.AddAuthenticationServices();
 
